@@ -12,7 +12,7 @@ TypeScript
 
 ## Requirements
 
-This project requires react-file-explorer running as a server.
+This project requires [react-file-explorer](https://github.com/jesuscc1993/react-file-explorer) running as a server.
 
 ## TODO
 
