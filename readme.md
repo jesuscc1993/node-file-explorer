@@ -6,9 +6,9 @@ TypeScript written ExpressJS file explorer
 
 ## Technologies and tools
 
-ExpressJS
-React
-TypeScript
+- ExpressJS
+- React
+- TypeScript
 
 ## Requirements
 
