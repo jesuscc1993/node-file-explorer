@@ -6,7 +6,7 @@ export type FileRequest = Request<
   unknown,
   FileRequestDto,
   ParsedQs,
-  Record<string, any>
+  Record<string, unknown>
 >;
 
 export type FileRequestDto = {
@@ -27,10 +27,10 @@ export type PathRequest = Request<
   PathResponseDto,
   PathRequestDto,
   ParsedQs,
-  Record<string, any>
+  Record<string, unknown>
 >;
 
-export type PathStats = {
+export type FileSystemItem = {
   absolutePath: string;
   accessTime: number;
   changeTime: number;
@@ -43,4 +43,4 @@ export type PathStats = {
   size: number;
 };
 
-export type PathResponseDto = PathStats[];
+export type PathResponseDto = FileSystemItem[];

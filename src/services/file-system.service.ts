@@ -3,9 +3,9 @@ import fse from 'fs-extra';
 
 import { directorySeparator } from '../constants/explorer.constants';
 import { getCommandLine } from '../domain/system.domain';
-import { PathReadOptions, PathStats } from '../types/path.types';
+import { FileSystemItem, PathReadOptions } from '../types/path.types';
 
-const reservedCharacters = /[\/\\]+/g;
+const reservedCharacters = /[/\\]+/g;
 
 const getStats = (path: string, name: string) => {
   const separator = path.endsWith(directorySeparator) ? '' : directorySeparator;
@@ -18,7 +18,7 @@ const getStats = (path: string, name: string) => {
     return undefined;
   }
 
-  const stats: PathStats = {
+  const stats: FileSystemItem = {
     absolutePath,
     name,
     accessTime: rawStats.atimeMs,
@@ -42,14 +42,13 @@ const readPath = (path: string, options?: PathReadOptions) => {
   let pathNames = filterReservedNames(fse.readdirSync(path));
   if (options?.hiddenFiles !== true) pathNames = filterHiddenNames(pathNames);
 
-  const pathStats = sortPathStats(
+  const items = sortFileSystemItems(
     pathNames
       .map((name) => getStats(path, name))
-      .filter((stats) => !!stats) as PathStats[],
+      .filter((stats) => !!stats) as FileSystemItem[],
   );
-  console.log(pathStats);
 
-  return pathStats;
+  return items;
 };
 
 const filterReservedNames = (names: string[]) => {
@@ -60,8 +59,8 @@ const filterHiddenNames = (names: string[]) => {
   return names.filter((name) => !name.startsWith('.'));
 };
 
-const sortPathStats = (pathStats: PathStats[]) => {
-  return pathStats.sort((a, b) => +b.isDirectory - +a.isDirectory);
+const sortFileSystemItems = (items: FileSystemItem[]) => {
+  return items.sort((a, b) => +b.isDirectory - +a.isDirectory);
 };
 
 export const fileSystemService = {
