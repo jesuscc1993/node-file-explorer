@@ -1,7 +1,7 @@
 import { exec } from 'child_process';
 import fse from 'fs-extra';
 
-import { directorySeparator } from '../constants/explorer.constants';
+import { directorySeparator, extensionSeparator } from '../constants/explorer.constants';
 import { getCommandLine } from '../domain/system.domain';
 import { FileSystemItem, PathReadOptions } from '../types/path.types';
 
@@ -24,6 +24,7 @@ const getStats = (path: string, name: string) => {
     accessTime: rawStats.atimeMs,
     changeTime: rawStats.ctimeMs,
     creationTime: rawStats.birthtimeMs,
+    extension: rawStats.isFile() ? getFileExtension(name) : undefined,
     isDirectory: rawStats.isDirectory(),
     isFile: rawStats.isFile(),
     isSymbolicLink: rawStats.isSymbolicLink(),
@@ -57,6 +58,12 @@ const filterReservedNames = (names: string[]) => {
 
 const filterHiddenNames = (names: string[]) => {
   return names.filter((name) => !name.startsWith('.'));
+};
+
+const getFileExtension = (name: string) => {
+  return name.includes(extensionSeparator)
+    ? name.split(extensionSeparator).pop()?.toLowerCase()
+    : undefined;
 };
 
 const sortFileSystemItems = (items: FileSystemItem[]) => {
