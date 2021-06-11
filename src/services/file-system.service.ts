@@ -62,7 +62,7 @@ const filterHiddenNames = (names: string[]) => {
 
 const getFileExtension = (name: string) => {
   return name.includes(extensionSeparator)
-    ? name.split(extensionSeparator).pop()?.toLowerCase()
+    ? name.split(extensionSeparator).pop()?.toUpperCase()
     : undefined;
 };
 
