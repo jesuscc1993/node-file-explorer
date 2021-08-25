@@ -5,6 +5,7 @@ const package = require('./package.json');
 
 module.exports = {
   entry: './src/app.ts',
+  mode: 'production',
   module: {
     rules: [{ test: /\.tsx?$/, use: 'ts-loader' }],
   },

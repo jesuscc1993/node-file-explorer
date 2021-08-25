@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "bundle": "webpack-cli --mode production",
+    "bundle": "webpack-cli",
     "debug": "yarn build && yarn start",
     "eslint": "eslint src/",
     "start": "node build/app.js"
