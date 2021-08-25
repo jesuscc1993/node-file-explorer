@@ -1,4 +1,5 @@
 *.log
 .DS_Store
 /build
+/bundle
 /node_modules

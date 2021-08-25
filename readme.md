@@ -9,6 +9,7 @@ TypeScript written ExpressJS file explorer
 - ExpressJS
 - React
 - TypeScript
+- Webpack
 
 ## Requirements
 
